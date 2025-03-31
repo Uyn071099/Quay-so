@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quay Số 1 Lần</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #result { font-size: 2em; margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 1.2em; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Quay Số May Mắn</h1>
+    <button id="spinButton">Quay Số</button>
+    <div id="result"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const button = document.getElementById("spinButton");
+            const resultDiv = document.getElementById("result");
+            const options = [
+                "Bài 4. Nhân lực điều dưỡng: Những thách thức toàn cầu",
+                "Bài 5. Thoả thuận thừa nhận lẫn nhau trong ASEAN (MRA) về nghề Điều dưỡng",
+                "Bài 6. Quản lý chất lượng chăm sóc",
+                "Bài 7. An toàn người bệnh và hướng dẫn phòng ngừa sự cố y khoa tại các cơ sở khám chữa bệnh",
+                "Bài 8. Kỹ năng quản lý căng thẳng",
+                "Bài 9. Kỹ năng giao tiếp với đồng nghiệp",
+                "Bài 10. Kỹ năng giải quyết vấn đề và giải quyết mâu thuẫn"
+            ];
+            
+            if (localStorage.getItem("luckyDraw")) {
+                resultDiv.textContent = "Bạn đã quay số: " + localStorage.getItem("luckyDraw");
+                button.disabled = true;
+            }
+
+            button.addEventListener("click", function() {
+                if (!localStorage.getItem("luckyDraw")) {
+                    let luckyChoice = options[Math.floor(Math.random() * options.length)];
+                    localStorage.setItem("luckyDraw", luckyChoice);
+                    resultDiv.textContent = "Kết quả của bạn: " + luckyChoice;
+                    button.disabled = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
